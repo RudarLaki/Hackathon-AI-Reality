@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NPCFlee : MonoBehaviour
+public class EscapeNpc : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private float fleeRadius = 5f;

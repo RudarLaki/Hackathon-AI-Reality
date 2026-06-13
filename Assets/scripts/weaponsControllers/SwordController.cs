@@ -1,4 +1,3 @@
-// SwordWeapon.cs - priloži na Sword GameObject
 using UnityEngine;
 
 public class SwordController : MonoBehaviour
@@ -8,6 +7,7 @@ public class SwordController : MonoBehaviour
     [SerializeField] private float swingHeight = 1.5f;
 
     private Vector3 startLocalPosition;
+    private float swingTimer = 0f;
 
     void Start()
     {
@@ -16,9 +16,9 @@ public class SwordController : MonoBehaviour
 
     void Update()
     {
-        // Gore dole kretanje
-        float newY = startLocalPosition.y + Mathf.Sin(Time.time * swingSpeed) * swingHeight;
-        transform.localPosition = new Vector3(startLocalPosition.x, newY, startLocalPosition.z);
+        swingTimer += Time.deltaTime;
+        float angle = Mathf.Sin(swingTimer * swingSpeed) * swingHeight * 45f;
+        transform.localRotation = Quaternion.Euler(angle, 0, 0);
     }
 
     void OnTriggerEnter(Collider other)

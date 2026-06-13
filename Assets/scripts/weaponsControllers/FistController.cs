@@ -1,4 +1,3 @@
-// FistWeapon.cs - priloži na oba Fist GameObject-a
 using UnityEngine;
 
 public class FistController : MonoBehaviour
@@ -9,6 +8,7 @@ public class FistController : MonoBehaviour
     [SerializeField] private bool isLeftFist = true;
 
     private Vector3 startLocalPosition;
+    private float punchTimer = 0f;
 
     void Start()
     {
@@ -17,9 +17,9 @@ public class FistController : MonoBehaviour
 
     void Update()
     {
-        // Leva i desna pesnica naizmenicno udaraju
+        punchTimer += Time.deltaTime;
         float offset = isLeftFist ? 0f : Mathf.PI;
-        float newZ = startLocalPosition.z + Mathf.Sin(Time.time * punchSpeed + offset) * punchDistance;
+        float newZ = startLocalPosition.z + Mathf.Sin(punchTimer * punchSpeed + offset) * punchDistance;
         transform.localPosition = new Vector3(startLocalPosition.x, startLocalPosition.y, newZ);
     }
 
