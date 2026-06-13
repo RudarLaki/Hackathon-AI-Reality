@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1484315475259448487}
   - component: {fileID: 2218624779878864954}
   - component: {fileID: 6341201065111619078}
+  - component: {fileID: 6392769325136301772}
   m_Layer: 0
   m_Name: NPC_Walk
   m_TagString: Untagged
@@ -158,3 +159,18 @@ MonoBehaviour:
   target: {fileID: 0}
   moveSpeed: 5
   stoppingDistance: 1
+--- !u!114 &6392769325136301772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7158667812235189972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39db23342477ec54182595617aaaf8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NpcHealthBar
+  maxHealth: 100
+  healthSlider: {fileID: 0}
+  healthCanvas: {fileID: 0}

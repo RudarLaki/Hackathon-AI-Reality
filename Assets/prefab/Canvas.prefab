@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 2460792415437683295}
   - component: {fileID: 1719290690172809037}
   - component: {fileID: 1492962509130194999}
+  - component: {fileID: -3886963511646770398}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -415,6 +416,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &-3886963511646770398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7883396559400372330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39db23342477ec54182595617aaaf8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NpcHealthBar
+  maxHealth: 100
+  healthSlider: {fileID: 0}
+  healthCanvas: {fileID: 0}
 --- !u!1 &8651749397680825934
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,9 +27,18 @@ public class NPCGun : MonoBehaviour
         }
     }
 
-    void Shoot()
+void Shoot()
+{
+    float distance = Vector3.Distance(transform.position, player.position);
+    if (distance > equipment.weapon.range) return;
+
+    if (equipment.weapon.bulletPrefab != null)
     {
-        Debug.Log(gameObject.name + " pucao, steta: " + equipment.weapon.damage);
-        // player.TakeDamage(equipment.weapon.damage);
+        // Spawna metak i rotira ga prema igracu
+        Vector3 direction = (player.position - transform.position).normalized;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        GameObject bullet = Instantiate(equipment.weapon.bulletPrefab, transform.position, rotation);
+        bullet.GetComponent<Bullet>().SetDamage(equipment.weapon.damage);
     }
+}
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3893731941436862555}
   - component: {fileID: 1275411060775109996}
   - component: {fileID: 5254450333041066643}
+  - component: {fileID: 8767794578394781083}
   m_Layer: 0
   m_Name: NPC_Glitch
   m_TagString: Untagged
@@ -157,3 +158,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCGlitch
   glitchRadius: 5
   player: {fileID: 5175610196879283863}
+--- !u!114 &8767794578394781083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5650903176381695129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39db23342477ec54182595617aaaf8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NpcHealthBar
+  maxHealth: 100
+  healthSlider: {fileID: 0}
+  healthCanvas: {fileID: 0}

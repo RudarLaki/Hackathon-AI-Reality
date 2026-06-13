@@ -8,4 +8,6 @@ public class WeaponData : ScriptableObject
     public float fireRate;
     public float range;
     public GameObject weaponModel; // 3D model kad dizajner da
+    public GameObject bulletPrefab; 
+
 }

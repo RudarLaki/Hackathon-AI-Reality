@@ -17,12 +17,18 @@ public class Bullet : MonoBehaviour
         transform.position += transform.forward * speed * Time.deltaTime;
     }
 
+    public void SetDamage(float amount)
+    {
+        damage = amount;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("Pogodjen igrac, steta: " + damage);
-            // other.GetComponent<PlayerHealth>().TakeDamage(damage);
+             other.GetComponent<NpcHealthBar>().TakeDamage(damage);
+       
             Destroy(gameObject);
         }
         

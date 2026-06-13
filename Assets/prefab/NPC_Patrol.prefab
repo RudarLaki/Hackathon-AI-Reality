@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5177960488357579490}
   - component: {fileID: 2428770799860956916}
   - component: {fileID: 554730292930530957}
+  - component: {fileID: 2988737079817305855}
   m_Layer: 0
   m_Name: NPC_Patrol
   m_TagString: Untagged
@@ -161,3 +162,18 @@ MonoBehaviour:
   - {fileID: 0}
   moveSpeed: 7
   reachDistance: 0.2
+--- !u!114 &2988737079817305855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7889659888806160065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39db23342477ec54182595617aaaf8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NpcHealthBar
+  maxHealth: 100
+  healthSlider: {fileID: 0}
+  healthCanvas: {fileID: 0}
