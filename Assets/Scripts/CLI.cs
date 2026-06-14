@@ -5,6 +5,7 @@ using System;
 using TMPro;
 using Random = UnityEngine.Random;
 
+
 public class HologramTerminal : MonoBehaviour
 {
     [SerializeField] private GameObject hologram;
@@ -48,17 +49,18 @@ public class HologramTerminal : MonoBehaviour
         
         commands = new Dictionary<string, BugCommand>()
         {
-            {"/dodge", new BugCommand(ActivateDodge, 1000)},
-            {"/speed", new BugCommand(ActivateSpeed, 20)},
-            {"/slow", new BugCommand(ActivateSlow, 30)},
-            {"/lowg", new BugCommand(ActivateLowGravity, 25)},
-            {"/blink", new BugCommand(ActivateBlink, 15)},
-            {"/invis", new BugCommand(ActivateInvisibility, 40)},
-            {"/split", new BugCommand(ActivateSplit, 50)}
+            {"/dodge", new BugCommand(ActivateDodge, 50, "dodge")},
+            {"/speed", new BugCommand(ActivateSpeed, 20, "speed")},
+            {"/slow", new BugCommand(ActivateSlow, 30, "slow")},
+            {"/lowg", new BugCommand(ActivateLowGravity, 25, "lowg")},
+            {"/blink", new BugCommand(ActivateBlink, 15, "blink")},
+            {"/invis", new BugCommand(ActivateInvisibility, 40, "invis")},
+            {"/split", new BugCommand(ActivateSplit, 30, "split")}
         };
     }
     void Update()
     {
+        
         float currEnrg = energy.GetEnergy();
         if (currEnrg < 30) malfunctionChance = 0.5f;
         else if (currEnrg <= 80) malfunctionChance = 0.3f;
@@ -94,6 +96,16 @@ public class HologramTerminal : MonoBehaviour
     }
     void ExecuteBug(BugCommand bug)
     {
+        if (!BugProgress.IsDiscovered(bug.bugId))
+        {
+            currentText = "";
+            text.text = currentText;
+            errorText.text = "UNKNOWN COMMAND";
+            StartCoroutine(Error());
+            Debug.Log("Command not learned yet!");
+            return;
+        }
+
         if (!energy.UseEnergy(bug.energyCost))
         {
             currentText = "";
@@ -121,8 +133,19 @@ public class HologramTerminal : MonoBehaviour
 
     void Malfunction()
     {
-        Debug.Log("KUR");
-        int bug = Random.Range(0, 6);
+        // Malfunction can only trigger bugs the player has already learned,
+        // to avoid surprising them with unknown mechanics.
+        List<int> learnedIndices = new List<int>();
+        if (BugProgress.IsDiscovered("speed")) learnedIndices.Add(0);
+        if (BugProgress.IsDiscovered("lowg")) learnedIndices.Add(1);
+        if (BugProgress.IsDiscovered("blink")) learnedIndices.Add(2);
+        if (BugProgress.IsDiscovered("slow")) learnedIndices.Add(3);
+        if (BugProgress.IsDiscovered("invis")) learnedIndices.Add(4);
+        if (BugProgress.IsDiscovered("dodge")) learnedIndices.Add(5);
+
+        if (learnedIndices.Count == 0) return;
+
+        int bug = learnedIndices[Random.Range(0, learnedIndices.Count)];
         switch (bug)
         {
             case 0:
@@ -276,11 +299,13 @@ public class HologramTerminal : MonoBehaviour
     {
         public Action action;
         public float energyCost;
+        public string bugId;
 
-        public BugCommand(Action action, float energyCost)
+        public BugCommand(Action action, float energyCost, string bugId)
         {
             this.action = action;
             this.energyCost = energyCost;
+            this.bugId = bugId;
         }
     }
 }
